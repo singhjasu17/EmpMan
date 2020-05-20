@@ -2,10 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
+import StitchClass, { StitchContext } from "./components/Stitch";
 
-
+const stitch=new StitchClass()
 ReactDOM.render(
-  <App/>,
+  <StitchContext.Provider value={stitch}>
+  <App/>
+  </StitchContext.Provider>,
+
   document.getElementById("root")
 );
 

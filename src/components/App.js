@@ -19,7 +19,7 @@ import StitchClass, { StitchContext } from "./Stitch";
 import Profile from './Profile'
 import InputFields from './InputFields' 
 let example=null;
-const stitch=new StitchClass()
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -28,15 +28,35 @@ class App extends Component {
      
     }
   }
+   componentDidMount()
+   {
+     this.updateUserData()
+  }
+  updateUserData=async ()=>
+  {
+
+    if(this.props.stitch.client.auth.currentUser)
+    {
+    console.log("Refreshing user data on page refresh")
+    let res=await this.props.stitch.client.auth.refreshCustomData()
+    console.log("current User"+this.props.stitch.client.auth.currentUser)
+    this.setState({user:this.props.stitch.client.auth.currentUser.customData})
+    }
+    else
+    {
+      console.log("user not logged in ")
+    }
+  }
   updateValue = (val) => {
     this.setState({user:val});
  }
   
   render() {
+
     example=this.state.user;
     console.log(this.state.user)
     return (
-      <StitchContext.Provider value={stitch}>
+
     <UserContext.Provider value={{state:this.state,updateUser:this.updateValue}}>
 
       <Router basename="/">
@@ -67,9 +87,9 @@ class App extends Component {
       </Router>
  
     </UserContext.Provider>
-  </StitchContext.Provider>
+
     );
   }
 }
 export {example}
-export default withUserContext(App);
+export default withStitch(withUserContext(App));

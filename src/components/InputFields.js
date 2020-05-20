@@ -3,6 +3,7 @@ import { withUserContext } from "./UserContext";
 import { withStitch } from "./Stitch";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import {withRouter,Redirect} from 'react-router-dom'
 import {
     Stitch
   } from "mongodb-stitch-browser-sdk";
@@ -23,7 +24,8 @@ class Profile extends Component {
                 await client.callFunction("UpdateUserData",[fieldsData]).then(result => 
                 {
                   const userData=result.doc;
-                  console.log('user data' +userData)
+				  console.log('user data' +userData)
+				  this.props.history.push('/Profile') 
                   if(userData.reqFields == true)
                   {
                         console.log('successfull')
@@ -102,4 +104,4 @@ class Profile extends Component {
         }
     }
 
-export default withStitch(withUserContext(Profile))
+export default withRouter(withStitch(withUserContext(Profile)))

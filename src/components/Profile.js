@@ -8,19 +8,29 @@ import {
     Stitch
   } from "mongodb-stitch-browser-sdk";
 class Profile extends Component {
-    static contextType=UserContext
+    constructor(props)
+    {
+        super(props)
+        console.log(props)
 
+    }
+    static contextType=UserContext
+    
 
         
      render()
     {
-        const {state} = this.context
-console.log(state)
+        const {updateUser} = this.context
+        
 
-        // const obj=this.renderProfile()
-        // console.log(obj)
-        console.log(this.props)
+        const user=this.props.stitch.client.auth.currentUser.customData
+       
+        
+        
+
+
         return (<div className="container emp-profile">
+            
                     <form method="post">
                         <div className="row">
                             <div className="col-md-4">
@@ -35,10 +45,10 @@ console.log(state)
                             <div className="col-md-6">
                                 <div className="profile-head">
                                             <h5>
-                                                name
+                                                
                                             </h5>
                                             <h6>
-                                                Web Developer and Designer
+                                                Gori 
                                             </h6>
                                             <p className="proile-rating">RANKINGS : <span>8/10</span></p>
                                     <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -78,23 +88,23 @@ console.log(state)
                                                         <label>User Id</label>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <p>Kshiti123</p>
+                                                        <p>{user.userId}</p>
                                                     </div>
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-6">
-                                                        <label>Name</label>
+                                                        <label>Company Name</label>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <p>Kshiti Ghelani</p>
+                                                        <p>{user.companyName}</p>
                                                     </div>
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-6">
-                                                        <label>Email</label>
+                                                        <label>Company EMS iD</label>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <p>kshitighelani@gmail.com</p>
+                                                        <p>{user.ems_id}</p>
                                                     </div>
                                                 </div>
                                                 <div className="row">
