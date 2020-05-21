@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 class NavNonAuth extends Component {
   render() {
     return (
-      <div>
+      <div className="d-flex">
         <Link to="/SignUp" className="btn btn-dark my-2 my-sm-0">
           Sign Up
         </Link>
