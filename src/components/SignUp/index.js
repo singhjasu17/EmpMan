@@ -9,7 +9,6 @@ import { withUserContext } from "../UserContext";
 import { withStitch } from "../Stitch";
 
 const INITIAL_STATE = {
-  username: "",
   email: "",
   passwordOne: "",
   passwordTwo: "",
@@ -60,7 +59,6 @@ class SignUp extends Component {
   };
   render() {
     const {
-      username,
       email,
       passwordOne,
       passwordTwo,
@@ -69,64 +67,51 @@ class SignUp extends Component {
     } = this.state;
 
     const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === "" ||
-      email === "" ||
-      username === "";
+      passwordOne !== passwordTwo || passwordOne === "" || email === "";
 
     return (
       <form
+        className="d-flex py-5 align-items-center justify-content-center "
         onSubmit={(e) => {
           this.onSubmit();
           e.preventDefault();
         }}
       >
-        <div class="row justify-content-center bg-white p-5">
-          <h1>Sign Up</h1>
-        </div>
-        <div class="row justify-content-center bg-white">
-          <div className="col-6">
-            <input
-              name="username"
-              class="col-12 my-2"
-              value={username}
-              onChange={this.onChange}
-              type="text"
-              placeholder="Full Name"
-            />
-            <input
-              name="email"
-              class="col-12 my-2"
-              value={email}
-              onChange={this.onChange}
-              type="text"
-              placeholder="Email Address"
-            />
-            <input
-              name="passwordOne"
-              class="col-12 my-2"
-              value={passwordOne}
-              onChange={this.onChange}
-              type="password"
-              placeholder="Password"
-            />
-            <input
-              name="passwordTwo"
-              class="col-12 my-2"
-              value={passwordTwo}
-              onChange={this.onChange}
-              type="password"
-              placeholder="Confirm Password"
-            />
-            <button
-              class="btn btn-primary col-12 my-2"
-              disabled={isInvalid}
-              type="submit"
-            >
-              Sign Up
-            </button>
-            {error && <p>{error.message}</p>}
-          </div>
+        <div className="row align-self-center my-auto col-sm-12 col-md-9 justify-content-center bg-light shadow p-5">
+          <div className="col-12 text-center display-4">Sign Up</div>
+
+          <input
+            name="email"
+            className="col-12 m-1 form-control shadow"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+          />
+          <input
+            name="passwordOne"
+            className="col-12 m-1 form-control shadow"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+          />
+          <input
+            name="passwordTwo"
+            className="col-12 m-1 form-control shadow"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm Password"
+          />
+          <button
+            class="btn btn-dark col-6 my-1"
+            disabled={isInvalid}
+            type="submit"
+          >
+            Sign Up
+          </button>
+          {error && <p>{error.message}</p>}
         </div>
       </form>
     );
