@@ -5,11 +5,14 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav class="navbar navbar-dark bg-dark">
-          <div className="flex flex-grow-1">
-            <Link class="navbar-brand flex-grow-1">Employee Management</Link>
-            <button className="btn btn-dark btn-sm">console.log(user)</button>
+        <nav className="navbar navbar-dark bg-dark">
+          <div className="flex-grow-1">
+            <Link className="navbar-brand flex-grow-1" to="/">
+              EMS
+            </Link>
+            {/* <button className="btn btn-dark btn-sm">console.log(user)</button> */}
           </div>
+          <div className="col-4"></div>
           <NavbarAuthentication />
         </nav>
       </div>
