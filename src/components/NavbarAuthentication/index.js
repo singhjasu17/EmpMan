@@ -1,16 +1,26 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
-import { withUserContext } from "../UserContext";
+import { withUserContext, UserContext } from "../UserContext";
+import { withStitch } from "../Stitch";
 import NavNonAuth from "./NavNonAuth";
+import NavAuth from "./NavAuth";
 
 class NavbarAuthentication extends Component {
   render() {
-    return (
-      <div>
-        <NavNonAuth />
-      </div>
-    );
+    const stitchUser = this.props.stitch.client.auth.currentUser;
+    if (stitchUser)
+      return (
+        <div>
+          <NavAuth user={stitchUser} />
+        </div>
+      );
+    else
+      return (
+        <div>
+          <NavNonAuth />
+        </div>
+      );
   }
 }
 
-export default withUserContext(NavbarAuthentication);
+export default withStitch(NavbarAuthentication);
